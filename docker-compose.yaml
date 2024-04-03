@@ -1,0 +1,45 @@
+version: '3.9'
+services:
+  # redis:
+  #   image: docker.io/redis:latest
+  #   ports:
+  #     - 6379:6379
+  #   restart: always
+
+  pg:
+    image: docker.io/postgres:latest
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=kbz#12345
+      - POSTGRES_DB=k_engine
+    restart: always
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  adminer:
+    image: docker.io/adminer:latest
+    container_name: adminer
+    ports:
+      - 8080:8080
+    depends_on:
+      - pg
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - '8888:80'
+    depends_on:
+      - pg
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pyaephyo.win@kbzbank.com
+      PGADMIN_DEFAULT_PASSWORD: kbz#12345
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+volumes:
+  postgres:
+  pgadmin-data:

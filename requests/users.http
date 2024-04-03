@@ -1,0 +1,14 @@
+# You have to install following extensions to send http requests internally
+# Name: REST Client
+# Id: humao.rest-client
+# Description: REST Client for Visual Studio Code
+# Version: 0.25.1
+# Publisher: Huachao Mao
+# VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+
+### Get Users
+http://localhost:3000/users
+
+### Get User
+http://localhost:3000/users/1
